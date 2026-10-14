@@ -1,0 +1,19 @@
+# Java and Maven build output
+**/target/
+**/build/
+
+# IDE and editor files
+.idea/
+**/.settings/
+**/.classpath
+**/.project
+**/*.iml
+**/.vscode/
+*.DS_Store
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+**/application-local.properties
+
