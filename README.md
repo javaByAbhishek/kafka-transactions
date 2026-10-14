@@ -1,6 +1,8 @@
 # Kafka Transactions
 
-A Java/Spring Boot example of Kafka-based money transfers using five Maven projects:
+A Java/Spring Boot example of Kafka-based money transfers organized as a Maven multi-module project.
+
+## Modules
 
 - `core` — shared event classes and exceptions
 - `TransferService` — accepts transfers and publishes transactional Kafka events
@@ -8,14 +10,21 @@ A Java/Spring Boot example of Kafka-based money transfers using five Maven proje
 - `DepositService` — consumes deposit events
 - `mockservice` — mock service used by the example
 
-Each directory is a separate Maven project. Build the shared `core` library first, then build or run the services from their own directories. The services expect Kafka at `localhost:9092`; the mock service listens on port `8082`.
+The services use the `com.javabyabhishek.payments` Java package namespace. The service modules are independently runnable Spring Boot applications; `core` is a shared library.
+
+## Build
+
+Build and verify all modules from the repository root:
 
 ```powershell
-cd core
-./mvnw.cmd clean install
-
-cd ..\TransferService
-./mvnw.cmd clean package
+./mvnw.cmd clean verify
 ```
 
-Run `WithdrawalService`, `DepositService`, `TransferService`, and `mockservice` from their respective directories with `./mvnw.cmd spring-boot:run` after Kafka and the shared `core` dependency are available.
+Build one application and its required modules, for example the transfer service:
+
+```powershell
+./mvnw.cmd -pl TransferService -am package
+java -jar TransferService/target/transfer-service-1.0.0-SNAPSHOT.jar
+```
+
+The services expect Kafka at `localhost:9092`; the mock service listens on port `8082`.
