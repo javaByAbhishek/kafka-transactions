@@ -1,4 +1,4 @@
-package com.javabyabhishek.payments.transfer.ui;
+package com.javabyabhishek.payments.transfer.resources;
 
 import org.springframework.web.bind.annotation.RestController;
 
